@@ -1,0 +1,4 @@
+/*
+Typed-Array-Json (https://github.com/mgreter/typed-json.js.git)
+- Copyright (c) 2017 Marcel Greter (http://github.com/mgreter)
+*/
