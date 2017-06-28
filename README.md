@@ -8,6 +8,9 @@ JSON data. It probably only makes sense if your JSON is
 over 100kb anyway. It is most useful if you can use the
 Typed Arrays directly (i.e. to pass to WebGL or WebWorkers).
 
+The main use is to optimize ThreeJS JSON models, where we
+have multiple numeric arrays that will be passed to WebGL.
+
 ## Preparing Data Files
 
 In order to use this library, you need to create two specific
@@ -34,8 +37,8 @@ with [`js-lzma`][3] to further reduce file-size. Repeat the option
 
 You need to first load the two files we prepared. I will give
 a basic (non-working) example that should get you started.
-Normally you will use `jQuery.ajay` or `THREE.FileLoader`. It's
-just important that you load one as `json` and the other as
+Normally you will use `jQuery.ajax` or `THREE.FileLoader`. Make
+sure that you load one as `json` and the other as
 `arraybuffer` to get the expected `response` types.
 
 ```js
