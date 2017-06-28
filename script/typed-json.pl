@@ -55,6 +55,9 @@ $output =~ s/\.jdb$//; # remove json file extension
 #######################################################################################################
 #######################################################################################################
 
+# options to pass to read/write file
+my $slurpopt = { binmode => ':raw' };
+
 # use globals for now
 our (@paths, %maps);
 
@@ -333,13 +336,13 @@ print "#" x 60, "\n";
 print "Loading ${input}.json\n";
 
 # simple data reading
-my $jsdata = read_file("${input}.json");
+my $jsdata = read_file("${input}.json", $slurpopt);
 die "error loading json name db\n" unless $jsdata;
 # $jsdata =~ s/\b0x([0-9A-Fa-f]{6,6})\b/hex($1)/eg;
 # $jsdata =~ s/\bshiny\b/hex('FFFFFF')/eg;
 my $json = JSON->new->decode($jsdata);
 # my $jsondata = encode_json($json); # commit cleanups
-# write_file( "${input}.json", { binmode => ':raw' }, $jsondata);
+# write_file( "${input}.json", $slurpopt, $jsondata);
 
 print "#" x 60, "\n";
 
@@ -355,8 +358,8 @@ my $jsondata = encode_json($json);
 print "#" x 60, "\n";
 print "Writing ${output}.jdb and ${output}.jbdb\n";
 
-write_file( "${output}.jdb", { binmode => ':raw' }, $jsondata);
-write_file( "${output}.jbdb", { binmode => ':raw' }, $buffer);
+write_file( "${output}.jdb", $slurpopt, $jsondata);
+write_file( "${output}.jbdb", $slurpopt, $buffer);
 
 print "#" x 60, "\n";
 
