@@ -179,10 +179,12 @@ sub processArray
 
 	# check for "typed" array
 	if (
-		$isInt8 || $isUint8 ||
-		$isInt16 || $isUint16 ||
-		$isInt32 || $isUint32 ||
-		$isFloat32 || $isFloat64
+		scalar(@{$arr}) > 6 && (
+			$isInt8 || $isUint8 ||
+			$isInt16 || $isUint16 ||
+			$isInt32 || $isUint32 ||
+			$isFloat32 || $isFloat64
+		)
 	) {
 		# store reference to input variable
 		# effectively pointing to the data
